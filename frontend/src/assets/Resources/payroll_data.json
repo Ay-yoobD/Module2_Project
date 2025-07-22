@@ -1,0 +1,64 @@
+{
+    "payrollData": [
+        {
+            "employeeId": 1,
+            "hoursWorked": 160,
+            "leaveDeductions": 8,
+            "finalSalary": 69500
+        },
+        {
+            "employeeId": 2,
+            "hoursWorked": 150,
+            "leaveDeductions": 10,
+            "finalSalary": 79000
+        },
+        {
+            "employeeId": 3,
+            "hoursWorked": 170,
+            "leaveDeductions": 4,
+            "finalSalary": 54800
+        },
+        {
+            "employeeId": 4,
+            "hoursWorked": 165,
+            "leaveDeductions": 6,
+            "finalSalary": 59700
+        },
+        {
+            "employeeId": 5,
+            "hoursWorked": 158,
+            "leaveDeductions": 5,
+            "finalSalary": 57850
+        },
+        {
+            "employeeId": 6,
+            "hoursWorked": 168,
+            "leaveDeductions": 2,
+            "finalSalary": 64800
+        },
+        {
+            "employeeId": 7,
+            "hoursWorked": 175,
+            "leaveDeductions": 3,
+            "finalSalary": 71800
+        },
+        {
+            "employeeId": 8,
+            "hoursWorked": 160,
+            "leaveDeductions": 0,
+            "finalSalary": 56000
+        },
+        {
+            "employeeId": 9,
+            "hoursWorked": 155,
+            "leaveDeductions": 5,
+            "finalSalary": 61500
+        },
+        {
+            "employeeId": 10,
+            "hoursWorked": 162,
+            "leaveDeductions": 4,
+            "finalSalary": 57750
+        }
+    ]
+}

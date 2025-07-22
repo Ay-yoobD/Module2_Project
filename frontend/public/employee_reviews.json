@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "employeeId": 1,
+    "reviewer": "Lungile Moyo",
+    "rating": 5,
+    "comments": "Sibongile has excellent work ethic and collaborates well with the team.",
+    "date": "2024-06-01"
+  },
+  {
+    "id": 2,
+    "employeeId": 2,
+    "reviewer": "HR Director",
+    "rating": 4,
+    "comments": "Lungile has demonstrated strong leadership in handling complex HR issues and improving employee morale.",
+    "date": "2024-05-15"
+  },
+  {
+    "id": 3,
+    "employeeId": 3,
+    "reviewer": "Sibongile Nkosi",
+    "rating": 3,
+    "comments": "Thabo pays great attention to detail but sometimes delays test reporting.",
+    "date": "2024-06-10"
+  },
+  {
+    "id": 4,
+    "employeeId": 4,
+    "reviewer": "Marketing Manager",
+    "rating": 4,
+    "comments": "Keshav has exceeded his sales targets for two consecutive quarters.",
+    "date": "2024-06-05"
+  },
+  {
+    "id": 5,
+    "employeeId": 5,
+    "reviewer": "Team Lead",
+    "rating": 4,
+    "comments": "Zanele brings creative marketing strategies and strong execution.",
+    "date": "2024-06-12"
+  },
+  {
+    "id": 6,
+    "employeeId": 6,
+    "reviewer": "Design Lead",
+    "rating": 5,
+    "comments": "Sipho designs clean and user-friendly interfaces.",
+    "date": "2024-06-03"
+  },
+  {
+    "id": 7,
+    "employeeId": 7,
+    "reviewer": "CTO",
+    "rating": 5,
+    "comments": "Naledi ensures infrastructure is always up and running with high efficiency.",
+    "date": "2024-06-08"
+  },
+  {
+    "id": 8,
+    "employeeId": 8,
+    "reviewer": "Marketing Lead",
+    "rating": 3,
+    "comments": "Farai is improving in content planning but needs to meet deadlines more consistently.",
+    "date": "2024-05-30"
+  },
+  {
+    "id": 9,
+    "employeeId": 9,
+    "reviewer": "Finance Manager",
+    "rating": 4,
+    "comments": "Karabo handles financial reporting accurately and meets tight deadlines.",
+    "date": "2024-06-04"
+  },
+  {
+    "id": 10,
+    "employeeId": 10,
+    "reviewer": "Support Manager",
+    "rating": 5,
+    "comments": "Fatima leads the support team with professionalism and ensures high client satisfaction.",
+    "date": "2024-06-06"
+  }
+]
