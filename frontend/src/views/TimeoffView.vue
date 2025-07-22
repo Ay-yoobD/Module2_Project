@@ -3,7 +3,7 @@
     <h2 class=" p-3 fw-bold">Leave Request Form:</h2>
   </header>
 
-  <div class="main-container">
+  <div class="main-container LeaveBody">
     <!-- <h1>Leave Request Form</h1> -->
 
     <div class="form-container">
@@ -165,10 +165,12 @@ export default {
 </script>
 
 <style scoped>
-* {
+.LeaveBody {
   font-family: "Lato", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color: #0f0f0f;
 }
+
+
 
 h1 {
   text-align: center;
@@ -213,6 +215,7 @@ button {
   letter-spacing: 0.5px;
   background-color: white;
   border: 1px solid #0f0f0f;
+  border-radius: 3px;
   padding: 8px 0;
   cursor: pointer;
   font-weight: bold;

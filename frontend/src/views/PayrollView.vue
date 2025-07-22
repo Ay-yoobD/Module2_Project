@@ -453,7 +453,7 @@ export default {
 }
 
 .testbox {
-    box-shadow: #B497BD 4px 4px 3px;
+    /* box-shadow: #B497BD 4px 4px 3px; */
     border: #0c2c47 solid 3px;
     padding: 35px;
     border-radius: 5px;
