@@ -39,6 +39,9 @@ export default {
       showNavbar,
     };
   },
+  mounted() {
+    this.$store.dispatch
+  },
 };
 </script>
 

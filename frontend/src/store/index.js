@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -8,6 +9,10 @@ export default createStore({
   mutations: {
   },
   actions: {
+    async getUsers(){
+      let data = await axios.get('http://localhost:9090/users')
+      console.log(data)
+    }
   },
   modules: {
   }

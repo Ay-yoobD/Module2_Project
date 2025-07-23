@@ -168,7 +168,6 @@ INSERT INTO attendance (EmployeeID, Name, Date, Status) VALUES (10, 'Fatima Pate
   `EmployeeID` INT NOT NULL,
   `Date` DATE NULL,
   `Reason` VARCHAR(60) NULL,
-  
   `Status` VARCHAR(10) NULL);
  
  -- ------Foreign Key Creation ------
@@ -200,3 +199,38 @@ INSERT INTO leave_requests (EmployeeId, Date, Reason, Status) VALUES (9, '2025-0
 INSERT INTO leave_requests (EmployeeId, Date, Reason, Status) VALUES (10, '2024-12-03', 'Vacation', 'Pending');
 
 -- ----------------------------------------------------------------------------------------------------------------------
+
+-- -------------------------------------------Salaries Table Creation: --------------------------------------------
+
+CREATE TABLE `moderntech_db`.`salaries` (
+  `EmployeeID` INT NOT NULL,
+  `HoursWorked` INT NOT NULL,
+  `LeaveDeductions` INT NOT NULL,
+  `FinalSalary` DECIMAL(7,2) NOT NULL);
+
+ -- ------Foreign Key Creation ------
+  
+ALTER TABLE `moderntech_db`.`salaries` 
+ADD INDEX `FKSalary_idx` (`EmployeeID` ASC) VISIBLE;
+;
+ALTER TABLE `moderntech_db`.`salaries` 
+ADD CONSTRAINT `FKSalary`
+  FOREIGN KEY (`EmployeeID`)
+  REFERENCES `moderntech_db`.`users` (`EmployeeID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+
+-- ------Inserting Data ------
+  
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (1, 160, 8, 69500);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (2, 150, 10, 79000);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (3, 170, 4, 54800);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (4, 165, 6, 59700);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (5, 158, 5, 57850);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (6, 168, 2, 64800);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (7, 175, 3, 71800);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (8, 160, 0, 56000);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (9, 155, 5, 61500);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (10, 162, 4, 57750);
+
