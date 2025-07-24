@@ -1,4 +1,4 @@
-import {testUsers,CalculateDeducts} from  '../model/usersDB.js'
+import {testUsers,CalculateDeducts,calculateRatePHR} from  '../model/usersDB.js'
 
 const testUserCon = async(req,res)=>{
     res.json({
@@ -12,6 +12,14 @@ const deductSalaryCon =  async (req, res) => {
     const deduction = await CalculateDeducts(id);
     res.json({ deduction });
     console.log({deduction})
-};   
+};  
 
-export {testUserCon,deductSalaryCon}
+const rateCon = async (req,res) => {
+    const ID = req.params.ID;
+    const rateHr = await calculateRatePHR(ID)
+    res.json({rateHr})
+    console.log(`Controller:${rateHr}`)
+    
+};
+
+export {testUserCon,deductSalaryCon,rateCon}

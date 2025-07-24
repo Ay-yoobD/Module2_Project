@@ -4,13 +4,19 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     users:null,
-    deducts : null
+    deducts : null,
+    rate : null
 
   },
 
   getters: {
     getDeduction(state){
+      console.log(`Getter Value: ${JSON.stringify(state)}`)
       return state.deducts
+    },
+
+    getRateHr(state){
+      return state.rate
     }
 
   },
@@ -21,7 +27,10 @@ export default createStore({
     },
     setDeduct(state,payload){
       state.deducts = payload 
-    }
+    },
+    setRateHr(state,payload){
+      state.rate = payload 
+    },
 
   },
 
@@ -35,10 +44,17 @@ export default createStore({
 
     async fetchDeduction({commit},EmpID){
       let res = await axios.get(`http://localhost:9090/users/deduct/${EmpID}`)
-      console.log(res.data.deduction)
+      console.log(`deduct store action${res.data.deduction}`)
 
 
-      commit('setDeduct',res.data.deducts)
+      commit('setDeduct',res.data.deduction)
+    },
+
+    async fetchRateHr({commit},EmpId){
+      let res = await axios.get(`http://localhost:9090/users/hrrate/${EmpId}`)
+      console.log(res.data.rateHr)
+
+      commit('setRateHr',res.data.rateHr)
     }
 
   },

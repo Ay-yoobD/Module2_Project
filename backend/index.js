@@ -1,6 +1,6 @@
 import express from 'express' 
 import cors from 'cors'
-import { deductSalaryCon, testUserCon } from './controller/usersCon.js'
+import { deductSalaryCon, testUserCon,rateCon } from './controller/usersCon.js'
 
 
 const app = express()
@@ -14,8 +14,8 @@ app.use(express.json())
 
 app.get('/users', testUserCon )
 app.get('/users/deduct/:id', deductSalaryCon )     
+app.get('/users/hrrate/:ID', rateCon )     
 
-app.listen(PORT,()=>{
+app.listen(PORT,()=>{   
     console.log(`http://localhost:${PORT}`)
-     
 })

@@ -53,7 +53,7 @@
                                                 <dd>{{ selectedEmployee?.hoursWorked }}</dd>
 
                                                 <dt>Hourly Rate:</dt>
-                                                <dd>R {{ employeeratephr ? employeeratephr.toFixed(2) : 'N/A' }} / hr
+                                                <dd>R {{ ratePHR ? ratePHR.toFixed(2) : 'N/A' }} / hr
                                                 </dd>
 
                                                 <dt>Amount of deductions:</dt>
@@ -116,10 +116,9 @@
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Detailed Deduction List</h1>
 
-
                             </div>
 
-                            <div v-if="selectedEmployeeId && Number.isFinite(deduction)" class="modal-body">
+                            <div v-if="selectedEmployeeId || deduction" class="modal-body">
                                 <p> Number of deductions: {{ selectedEmployee.leaveDeductions }}</p>
                                 <p>Deductions in Rands: R {{ deduction }}</p>
                                 <p><strong>Other Deductions</strong></p>
@@ -164,7 +163,7 @@
                         <div class="col-6 col-md-4 themed-grid-col text-start">
                             Employee Department: {{ selectedEmployeeDetails?.department }}
                             <br>
-                            Hourly Rate:R {{ employeeratephr ? employeeratephr.toFixed(2) : 'N/A' }}
+                            Hourly Rate:R {{ ratePHR ? ratePHR.toFixed(2) : 'N/A' }}
                             <br>
                             Hours Worked: {{ selectedEmployee?.hoursWorked }}
 
@@ -297,14 +296,14 @@ export default {
         // },
 
         //Calculation to find the pay rate per hour of an employee
-        employeeratephr() {
-            if (this.selectedEmployee && this.selectedEmployeeDetails && this.selectedEmployee.hoursWorked > 0) {
-                return this.selectedEmployeeDetails.salary / this.selectedEmployee.hoursWorked
-            }
-            return 0;
+        // employeeratephr() {
+        //     if (this.selectedEmployee && this.selectedEmployeeDetails && this.selectedEmployee.hoursWorked > 0) {
+        //         return this.selectedEmployeeDetails.salary / this.selectedEmployee.hoursWorked
+        //     }
+        //     return 0;
 
 
-        },
+        // },
 
         calculatePAYE() {
             if (this.selectedEmployee && this.selectedEmployeeDetails) {
@@ -345,10 +344,15 @@ export default {
             return 0;
 
         },
-
+//---------------------------------Backend Calculations:--------------------------------------------------
         deduction() {
             console.log('Deduction from store:', this.$store.getters.getDeduction);
             return this.$store.getters.getDeduction;
+        },
+
+        ratePHR() {
+            console.log('Rate from store:', this.$store.getters.getRateHr);
+            return this.$store.getters.getRateHr;
         },
 
 
@@ -357,12 +361,12 @@ export default {
     watch: {
         selectedEmployeeId(id) {
             this.$store.dispatch('fetchDeduction', id);
-            // for (let emp of this.EmployeeInfo) {
-            //     if (emp.employeeId == id) {
-            //         this.selectedEmployee = emp;
-            //         break;
-            //     }
-            // }
+
+        },
+
+        selectedEmployeeId(id) {
+            this.$store.dispatch('fetchRateHr', id);
+
         }
     },
 }

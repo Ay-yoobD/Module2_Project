@@ -24,4 +24,17 @@ const CalculateDeducts = async (EmpID) => {
 
 }
 
-export {testUsers,CalculateDeducts}
+const calculateRatePHR = async (EmpID) => {
+    const [rowSalary] = await pool.query('SELECT Salary FROM users WHERE EmployeeID = ?',[EmpID]);
+    const [hrsWork] = await pool.query('SELECT HoursWorked FROM salaries WHERE EmployeeID = ?',[EmpID])
+
+    const salary = rowSalary[0].Salary;
+    const HRsWork = hrsWork[0].HoursWorked;
+    
+    console.log(`UserDB rate:${salary/HRsWork}`)
+
+    return salary/HRsWork
+    
+}
+
+export {testUsers,CalculateDeducts,calculateRatePHR}
