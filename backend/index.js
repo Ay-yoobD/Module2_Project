@@ -1,39 +1,21 @@
 import express from 'express' 
-import mysql2 from 'mysql2/promise'
-import dotenv from 'dotenv'
 import cors from 'cors'
+import { deductSalaryCon, testUserCon } from './controller/usersCon.js'
 
-dotenv.config()
+
 const app = express()
+
 let PORT = process.env.PORT 
-const pool = mysql2.createPool({
-    host : process.env.HOST,
-    user : process.env.USER,
-    password : process.env.PASSWORD,
-    database : process.env.DATABASE
 
-})
 app.use(cors())
+app.use(express.json())
 
+//-------------------------------------------------------------------------------------------------
 
-
-const testUsers = async () => {
-    let [row] = await pool.query('SELECT * FROM users')
-    return row
-
-    
-}
-
-app.get('/users', async(req,res)=>{
-    res.json({
-        users : await testUsers()
-    })
-})
-
-
-
-
+app.get('/users', testUserCon )
+app.get('/users/deduct/:id', deductSalaryCon )     
 
 app.listen(PORT,()=>{
     console.log(`http://localhost:${PORT}`)
+     
 })

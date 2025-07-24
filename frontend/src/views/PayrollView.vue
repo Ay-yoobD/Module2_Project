@@ -1,242 +1,245 @@
-<template>
-    <div class="MainPayRoll">
-        <header class="PayRollHead" >
-            <h2 class=" p-3 fw-bold">Payroll & Payslip management:</h2>
-        </header>
+    <template>
+        <div class="MainPayRoll">
+            <header class="PayRollHead">
+                <h2 class=" p-3 fw-bold">Payroll & Payslip management:</h2>
+            </header>
 
-        <main class="PayrollBody">
-            <div class="container-xl ImageContain">
-                <figure class="figure PayImage">
-                    <img src="../assets/Meter.png" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption">Total Number of Deductions severity</figcaption>
-                </figure>
+            <main class="PayrollBody">
+                <div class="container-xl ImageContain">
+                    <figure class="figure PayImage">
+                        <img src="../assets/Meter.png" class="figure-img img-fluid rounded" alt="...">
+                        <figcaption class="figure-caption">Total Number of Deductions severity</figcaption>
+                    </figure>
 
-                <figure class="figure PayImage">
-                    <img src="../assets/SalariesPie.png" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption">Total Paid Takeaway Salaries vs Not Paid</figcaption>
-                </figure>
+                    <figure class="figure PayImage">
+                        <img src="../assets/SalariesPie.png" class="figure-img img-fluid rounded" alt="...">
+                        <figcaption class="figure-caption">Total Paid Takeaway Salaries vs Not Paid</figcaption>
+                    </figure>
 
-                <figure class="figure PayImage">
-                    <img src="../assets/EmployeeGraph.jpg" class="figure-img img-fluid rounded" alt="...">
-                    <figcaption class="figure-caption">Increasing number of ModernTech employees</figcaption>
-                </figure>
+                    <figure class="figure PayImage">
+                        <img src="../assets/EmployeeGraph.jpg" class="figure-img img-fluid rounded" alt="...">
+                        <figcaption class="figure-caption">Increasing number of ModernTech employees</figcaption>
+                    </figure>
 
-
-            </div>
-
-            <div class="container-xl">
-                <hr style=" color: #2d5652; ">
-
-                <div class="Title display-4 fw-bold">
-                    <p>Payslip audit:</p>
 
                 </div>
-                <hr style=" color: #2d5652;">
 
-                <section id="intro">
+                <div class="container-xl">
+                    <hr style=" color: #2d5652; ">
 
-                    <div class="container-lg">
+                    <div class="Title display-4 fw-bold">
+                        <p>Payslip audit:</p>
 
-                        <div class="row justify-content-center align-items-center">
+                    </div>
+                    <hr style=" color: #2d5652;">
 
-                            <div class="col-md-5 text-center text-md-start testbox">
+                    <section id="intro">
 
-                                <div class="PayManageBody">
+                        <div class="container-lg">
 
-                                    <div class="info-card">
-                                        <h3 class="fw-bolder">Employee Salary & Payroll overview:</h3>
-                                        <dl class="EmployeeInfo">
-                                            <dt>Employee ID :</dt>
-                                            <dd>{{ selectedEmployee?.employeeId }}</dd>
+                            <div class="row justify-content-center align-items-center">
 
-                                            <dt>Hours employee worked:</dt>
-                                            <dd>{{ selectedEmployee?.hoursWorked }}</dd>
+                                <div class="col-md-5 text-center text-md-start testbox">
 
-                                            <dt>Hourly Rate:</dt>
-                                            <dd>R {{ employeeratephr ? employeeratephr.toFixed(2) : 'N/A' }} / hr</dd>
+                                    <div class="PayManageBody">
 
-                                            <dt>Amount of deductions:</dt>
-                                            <dd>{{ selectedEmployee?.leaveDeductions }}</dd>
+                                        <div class="info-card">
+                                            <h3 class="fw-bolder">Employee Salary & Payroll overview:</h3>
+                                            <dl class="EmployeeInfo">
+                                                <dt>Employee ID :</dt>
+                                                <dd>{{ selectedEmployee?.employeeId }}</dd>
 
-                                            <dt>Gross Salary Amount:</dt>
-                                            <dd>{{ selectedEmployee?.finalSalary }}</dd>
+                                                <dt>Hours employee worked:</dt>
+                                                <dd>{{ selectedEmployee?.hoursWorked }}</dd>
 
-                                        </dl>
+                                                <dt>Hourly Rate:</dt>
+                                                <dd>R {{ employeeratephr ? employeeratephr.toFixed(2) : 'N/A' }} / hr
+                                                </dd>
+
+                                                <dt>Amount of deductions:</dt>
+                                                <dd>{{ selectedEmployee?.leaveDeductions }}</dd>
+
+                                                <dt>Gross Salary Amount:</dt>
+                                                <dd>{{ selectedEmployee?.finalSalary }}</dd>
+
+                                            </dl>
+
+                                        </div>
 
                                     </div>
 
                                 </div>
 
+                                <div class="col-lg-5 text-center  ">
+                                    <select v-model="selectedEmployeeId" name="EmployeeSelect" id="cmbEmployeeSelect">
+                                        <option selected disabled hidden value="">Choose Employee</option>
+                                        <option v-for="EmployeeData in EmployeeInfo" :key="EmployeeData.employeeId"
+                                            :value="EmployeeData.employeeId">
+                                            ID:{{ EmployeeData.employeeId }} {{ EmployeeData.name }}
+
+                                        </option>
+                                    </select>
+
+                                    <button class="MainPayBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Show all deduction full details
+                                    </button>
+
+                                    <button class="MainPayBtn" @click="showPayslipDetails">
+                                        Calculate and Display full payslip details
+                                    </button>
+
+                                    <a style="text-decoration: none; color: black;"
+                                        :href="selectedEmployeeId && payslipVisible ? `/PDFs/Payslip_${selectedEmployeeId}.pdf` : '#'"
+                                        :download="selectedEmployeeId && payslipVisible ? `Payslip_${selectedEmployeeId}.pdf` : null"
+                                        :class="['MainPayBtn', { disabled: !selectedEmployeeId || !payslipVisible }]">
+
+                                        Create Digital Payslip (PDF)
+
+                                    </a>
+
+                                </div>
+
                             </div>
-
-                            <div class="col-lg-5 text-center  ">
-                                <select v-model="selectedEmployeeId" name="EmployeeSelect" id="cmbEmployeeSelect">
-                                    <option selected disabled hidden value="">Choose Employee</option>
-                                    <option v-for="EmployeeData in EmployeeInfo" :key="EmployeeData.employeeId"
-                                        :value="EmployeeData.employeeId">
-                                        ID:{{ EmployeeData.employeeId }} {{ EmployeeData.name }}
-                                    </option>
-                                </select>
-
-                                <button class="MainPayBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Show all deduction full details
-                                </button>
-
-                                <button class="MainPayBtn" @click="showPayslipDetails">
-                                    Calculate and Display full payslip details
-                                </button>
-
-                                <a style="text-decoration: none; color: black;" :href="selectedEmployeeId && payslipVisible ? `/PDFs/Payslip_${selectedEmployeeId}.pdf` : '#'" 
-                                    :download="selectedEmployeeId && payslipVisible ? `Payslip_${selectedEmployeeId}.pdf` : null"
-                                    :class="['MainPayBtn', { disabled: !selectedEmployeeId || !payslipVisible }]">
-
-                                    Create Digital Payslip (PDF)
-
-                                </a>
-
-                            </div>
-
                         </div>
-                    </div>
-                    <hr>
-                </section>
+                        <hr>
+                    </section>
 
-            </div>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-
-                <div class="modal-dialog modal-dialog-centered">
-
-                    <div class="modal-content">
-
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detailed Deduction List</h1>
-
-
-                        </div>
-
-                        <div v-if="selectedEmployeeId" class="modal-body ">
-                            <p> Number of deductions: {{ selectedEmployee.leaveDeductions }}</p>
-                            <p>Deductions in Rands: R {{ deductionInRands.toLocaleString() }}</p>
-                            <p><strong>Other Deductions</strong></p>
-                            <p>PAYE - 34%</p>
-                            <p>UIF - 2%</p>
-                            <p>Health Insurance - 5%</p>
-
-                        </div>
-                        <div v-else class="modal-body">
-                            Please select an employee
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
                 </div>
 
-            </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
 
-            <div class="container-xl PaySlipRow">
+                    <div class="modal-dialog modal-dialog-centered">
 
-                <h3 class="fw-bold display-5 py-2  text-center">ModernTech Employee Payslip:</h3>
+                        <div class="modal-content">
 
-                <hr>
-
-                <div v-if="selectedEmployeeId && payslipVisible" class="row mb-3 ">
-
-                    <div class="col-md-8 themed-grid-col text-start">
-                        MordernTech Employee ID: {{ selectedEmployee?.employeeId }}
-                        <br>
-                        Employee Name: {{ selectedEmployeeDetails?.name }}
-                        <br>
-                        Company Position: {{ selectedEmployeeDetails?.position }}
-                        <br>
-
-                        <br>
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Detailed Deduction List</h1>
 
 
-                    </div>
+                            </div>
 
-                    <div class="col-6 col-md-4 themed-grid-col text-start">
-                        Employee Department: {{ selectedEmployeeDetails?.department }}
-                        <br>
-                        Hourly Rate:R {{ employeeratephr ? employeeratephr.toFixed(2) : 'N/A' }}
-                        <br>
-                        Hours Worked: {{ selectedEmployee?.hoursWorked }}
+                            <div v-if="selectedEmployeeId && Number.isFinite(deduction)" class="modal-body">
+                                <p> Number of deductions: {{ selectedEmployee.leaveDeductions }}</p>
+                                <p>Deductions in Rands: R {{ deduction }}</p>
+                                <p><strong>Other Deductions</strong></p>
+                                <p>PAYE - 34%</p>
+                                <p>UIF - 2%</p>
+                                <p>Health Insurance - 5%</p>
 
+                            </div>
+                            <div v-else class="modal-body">
+                                Please select an employee
+                            </div>
 
-                    </div>
-                    <hr>
-                    <div class="col-md-8 themed-grid-col text-start">
-                        Initial Employee Salary:
-                        <br>
-                        Deductions from salary:
-                        <br>
-                        Deductions in Rands:
-                        <br>
-                        Taxable Salary:
-                        <br>
-                        <br>
-                        <h6><strong>Other Deductions:</strong></h6>
-                        PAYE Percentage:
-                        <br>
-                        PAYE Amount:
-                        <br>
-                        UIF Percantage:
-                        <br>
-                        UIF Amount:
-                        <br>
-                        Health Insurance Percantage:
-                        <br>
-                        Health Insurance Amount:
-                        <br>
-                        <br>
-                        <h5><strong>Take Home Pay:</strong></h5>
-                        <br>
-
-
-                    </div>
-
-                    <div class="col-6 col-md-4 themed-grid-col text-end">
-                        R{{ selectedEmployeeDetails?.salary }}
-                        <br>
-                        {{ selectedEmployee?.leaveDeductions }}
-                        <br>
-                        R {{ deductionInRands.toLocaleString() }}
-                        <br>
-                        R {{ selectedEmployee?.finalSalary }}
-
-                        <br>
-                        <br>
-                        <br>
-                        34%
-                        <br>
-                        R {{ calculatePAYE.toFixed(2).toLocaleString() }}
-                        <br>
-                        2%
-                        <br>
-                        R {{ calculateUIF.toFixed(2).toLocaleString() }}
-                        <br>
-                        5%
-                        <br>
-                        R {{ calculateHealthInsure.toFixed(2).toLocaleString() }}
-                        <br>
-                        <br>
-                        <br>
-                        R {{ calculateTakeHome.toFixed(2).toLocaleString() }}
-
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
-            </div>
+                <div class="container-xl PaySlipRow">
 
-        </main>
+                    <h3 class="fw-bold display-5 py-2  text-center">ModernTech Employee Payslip:</h3>
 
-    </div>
+                    <hr>
 
-</template>
+                    <div v-if="selectedEmployeeId && payslipVisible" class="row mb-3 ">
+
+                        <div class="col-md-8 themed-grid-col text-start">
+                            MordernTech Employee ID: {{ selectedEmployee?.employeeId }}
+                            <br>
+                            Employee Name: {{ selectedEmployeeDetails?.name }}
+                            <br>
+                            Company Position: {{ selectedEmployeeDetails?.position }}
+                            <br>
+
+                            <br>
+
+
+                        </div>
+
+                        <div class="col-6 col-md-4 themed-grid-col text-start">
+                            Employee Department: {{ selectedEmployeeDetails?.department }}
+                            <br>
+                            Hourly Rate:R {{ employeeratephr ? employeeratephr.toFixed(2) : 'N/A' }}
+                            <br>
+                            Hours Worked: {{ selectedEmployee?.hoursWorked }}
+
+
+                        </div>
+                        <hr>
+                        <div class="col-md-8 themed-grid-col text-start">
+                            Initial Employee Salary:
+                            <br>
+                            Deductions from salary:
+                            <br>
+                            Deductions in Rands:
+                            <br>
+                            Taxable Salary:
+                            <br>
+                            <br>
+                            <h6><strong>Other Deductions:</strong></h6>
+                            PAYE Percentage:
+                            <br>
+                            PAYE Amount:
+                            <br>
+                            UIF Percantage:
+                            <br>
+                            UIF Amount:
+                            <br>
+                            Health Insurance Percantage:
+                            <br>
+                            Health Insurance Amount:
+                            <br>
+                            <br>
+                            <h5><strong>Take Home Pay:</strong></h5>
+                            <br>
+
+
+                        </div>
+
+                        <div class="col-6 col-md-4 themed-grid-col text-end">
+                            R{{ selectedEmployeeDetails?.salary }}
+                            <br>
+                            {{ selectedEmployee?.leaveDeductions }}
+                            <br>
+                            R {{ deduction }}
+                            <br>
+                            R {{ selectedEmployee?.finalSalary }}
+
+                            <br>
+                            <br>
+                            <br>
+                            34%
+                            <br>
+                            R {{ calculatePAYE.toFixed(2).toLocaleString() }}
+                            <br>
+                            2%
+                            <br>
+                            R {{ calculateUIF.toFixed(2).toLocaleString() }}
+                            <br>
+                            5%
+                            <br>
+                            R {{ calculateHealthInsure.toFixed(2).toLocaleString() }}
+                            <br>
+                            <br>
+                            <br>
+                            R {{ calculateTakeHome.toFixed(2).toLocaleString() }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </template>
 
 <script>
 //Importing locally stored json files
@@ -287,11 +290,11 @@ export default {
         },
 
         //Simple calcalution to find the deduction in rands
-        deductionInRands() {
-            if (this.selectedEmployee && this.selectedEmployeeDetails) {
-                return this.selectedEmployeeDetails.salary - this.selectedEmployee.finalSalary;
-            }
-        },
+        // deductionInRands() {
+        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
+        //         return this.selectedEmployeeDetails.salary - this.selectedEmployee.finalSalary;
+        //     }
+        // },
 
         //Calculation to find the pay rate per hour of an employee
         employeeratephr() {
@@ -341,9 +344,27 @@ export default {
             }
             return 0;
 
-        }
+        },
 
-    }
+        deduction() {
+            console.log('Deduction from store:', this.$store.getters.getDeduction);
+            return this.$store.getters.getDeduction;
+        },
+
+
+
+    },
+    watch: {
+        selectedEmployeeId(id) {
+            this.$store.dispatch('fetchDeduction', id);
+            // for (let emp of this.EmployeeInfo) {
+            //     if (emp.employeeId == id) {
+            //         this.selectedEmployee = emp;
+            //         break;
+            //     }
+            // }
+        }
+    },
 }
 
 </script>
@@ -421,7 +442,7 @@ export default {
 
 }
 
-.MainPayBtn a{
+.MainPayBtn a {
     text-decoration: none;
 }
 

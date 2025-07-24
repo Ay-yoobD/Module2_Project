@@ -1,17 +1,11 @@
 <template>
   <div class="d-flex">
     <NavBar v-if="showNavbar" />
-    
+
     <div class="content flex-grow-1 position-relative p-3">
       <!-- Show Nav toggle button only if NavBar is shown -->
-      <button
-        v-if="showNavbar"
-        class="btn NavButton"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasExample"
-        aria-controls="offcanvasExample"
-      >
+      <button v-if="showNavbar" class="btn NavButton" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         ☰
       </button>
 
@@ -40,9 +34,14 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch
+    this.$store.dispatch('getUsers')
+
   },
-};
+
+  computed: {
+
+  },
+}; 
 </script>
 
 <style>
@@ -61,7 +60,8 @@ export default {
 .content {
   width: 100%;
   position: relative;
-  padding: 1rem; /* Matches .p-3 Bootstrap class */
+  padding: 1rem;
+  /* Matches .p-3 Bootstrap class */
 }
 
 .NavButton {
