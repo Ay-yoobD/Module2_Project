@@ -20,25 +20,25 @@ CREATE TABLE `moderntech_db`.`users` (
 -- ------Inserting Data ------
 
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (1, 'Sibongile Nkosi', 'Software Engineer', 'Development', 70000, 'Joined in 2015, promoted to Senior in 2018', 'sibongile.nkosi@moderntech.com', 'sibongile', NULL);
+VALUES (1, 'Sibongile Nkosi', 'Software Engineer', 'Development', 70000, 'Joined in 2015, promoted to Senior in 2018', 'sibongile.nkosi@moderntech.com', 'sibongile', '$2b$10$TK0mznJaHxiwRHMzKqS3De2AnrRnf1bJ3zTnP7InM2Fu1QaYAjfzi');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (2, 'Lungile Moyo', 'HR Manager', 'HR', 80000, 'Joined in 2013, promoted to Manager in 2017', 'lungile.moyo@moderntech.com', 'lungile', NULL);
+VALUES (2, 'Lungile Moyo', 'HR Manager', 'HR', 80000, 'Joined in 2013, promoted to Manager in 2017', 'lungile.moyo@moderntech.com', 'lungile', '$2b$10$0SJsGY.aL0mhIfMHmBk9luJhv.Lsjnsys/3gSVWc.FkTD6ZFt6y46');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (3, 'Thabo Molefe', 'Quality Analyst', 'QA', 55000, 'Joined in 2018', 'thabo.molefe@moderntech.com', 'thabo', NULL);
+VALUES (3, 'Thabo Molefe', 'Quality Analyst', 'QA', 55000, 'Joined in 2018', 'thabo.molefe@moderntech.com', 'thabo', '$2b$10$RF7V88gakhw4cdzJIzd0A.iQDP7I4Jd5v44XMsNR/ebYoURO667uG');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (4, 'Keshav Naidoo', 'Sales Representative', 'Sales', 60000, 'Joined in 2020', 'keshav.naidoo@moderntech.com', 'keshav', NULL);
+VALUES (4, 'Keshav Naidoo', 'Sales Representative', 'Sales', 60000, 'Joined in 2020', 'keshav.naidoo@moderntech.com', 'keshav', '$2b$10$.eHMCsadhI7q.IO1BoGseObz0fzf8MLeTXJ9Mhqq8GWbdssHMKzly');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (5, 'Zanele Khumalo', 'Marketing Specialist', 'Marketing', 58000, 'Joined in 2019', 'zanele.khumalo@moderntech.com', 'zanele', NULL);
+VALUES (5, 'Zanele Khumalo', 'Marketing Specialist', 'Marketing', 58000, 'Joined in 2019', 'zanele.khumalo@moderntech.com', 'zanele', '$2b$10$5GhjZe2Xa9L8d8LGltw7hu0OyiBF6RqAdJT8hHi0MRDCzQmF.pYCS');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (6, 'Sipho Zulu', 'UI/UX Designer', 'Design', 65000, 'Joined in 2016', 'sipho.zulu@moderntech.com', 'sipho', NULL);
+VALUES (6, 'Sipho Zulu', 'UI/UX Designer', 'Design', 65000, 'Joined in 2016', 'sipho.zulu@moderntech.com', 'sipho', '$2b$10$yrs9UtttjS2lhLMEHrLQxepaw7k3IssbuVp5IR3w8KWjnov4u/58m');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (7, 'Naledi Moeketsi', 'DevOps Engineer', 'IT', 72000, 'Joined in 2017', 'naledi.moeketsi@moderntech.com', 'naledi', NULL);
+VALUES (7, 'Naledi Moeketsi', 'DevOps Engineer', 'IT', 72000, 'Joined in 2017', 'naledi.moeketsi@moderntech.com', 'naledi', '$2b$10$i2JKyl/OvxFOULpzrSxwW.Y978Xcg2aFitoFWPPTMLFUh5wdjZtlC');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (8, 'Farai Gumbo', 'Content Strategist', 'Marketing', 56000, 'Joined in 2021', 'farai.gumbo@moderntech.com', 'farai', NULL);
+VALUES (8, 'Farai Gumbo', 'Content Strategist', 'Marketing', 56000, 'Joined in 2021', 'farai.gumbo@moderntech.com', 'farai', '$2b$10$7F26iHXMoB6OYHbnccVwZuDeQCm6B8dxikpa6GnEP3Har2m2lFfS2');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password)
-VALUES (9, 'Karabo Dlamini', 'Accountant', 'Finance', 62000, 'Joined in 2018', 'karabo.dlamini@moderntech.com', 'karabo', NULL);
+VALUES (9, 'Karabo Dlamini', 'Accountant', 'Finance', 62000, 'Joined in 2018', 'karabo.dlamini@moderntech.com', 'karabo', '$2b$10$7EPoK9zJclwe3vu53lw2.OBjwlRHe1Zv/5.J/o7ry2.GVGCWKPVYa');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (10, 'Fatima Patel', 'Customer Support Lead', 'Support', 58000, 'Joined in 2016', 'fatima.patel@moderntech.com', 'fatima', NULL);
+VALUES (10, 'Fatima Patel', 'Customer Support Lead', 'Support', 58000, 'Joined in 2016', 'fatima.patel@moderntech.com', 'fatima', '$2b$10$YWReLi8LpfW9ROJmbESKSugx1PNXSx.VygBw7peuxv6O/ekiFjnEC');
 
 -- --------------------------------------------------------------------------------------------------------------
 
@@ -168,7 +168,6 @@ INSERT INTO attendance (EmployeeID, Name, Date, Status) VALUES (10, 'Fatima Pate
   `EmployeeID` INT NOT NULL,
   `Date` DATE NULL,
   `Reason` VARCHAR(60) NULL,
-  
   `Status` VARCHAR(10) NULL);
  
  -- ------Foreign Key Creation ------
@@ -200,3 +199,38 @@ INSERT INTO leave_requests (EmployeeId, Date, Reason, Status) VALUES (9, '2025-0
 INSERT INTO leave_requests (EmployeeId, Date, Reason, Status) VALUES (10, '2024-12-03', 'Vacation', 'Pending');
 
 -- ----------------------------------------------------------------------------------------------------------------------
+
+-- -------------------------------------------Salaries Table Creation: --------------------------------------------
+
+CREATE TABLE `moderntech_db`.`salaries` (
+  `EmployeeID` INT NOT NULL,
+  `HoursWorked` INT NOT NULL,
+  `LeaveDeductions` INT NOT NULL,
+  `FinalSalary` DECIMAL(7,2) NOT NULL);
+
+ -- ------Foreign Key Creation ------
+  
+ALTER TABLE `moderntech_db`.`salaries` 
+ADD INDEX `FKSalary_idx` (`EmployeeID` ASC) VISIBLE;
+;
+ALTER TABLE `moderntech_db`.`salaries` 
+ADD CONSTRAINT `FKSalary`
+  FOREIGN KEY (`EmployeeID`)
+  REFERENCES `moderntech_db`.`users` (`EmployeeID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+
+-- ------Inserting Data ------
+  
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (1, 160, 8, 69500);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (2, 150, 10, 79000);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (3, 170, 4, 54800);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (4, 165, 6, 59700);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (5, 158, 5, 57850);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (6, 168, 2, 64800);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (7, 175, 3, 71800);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (8, 160, 0, 56000);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (9, 155, 5, 61500);
+INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (10, 162, 4, 57750);
+
