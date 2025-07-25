@@ -4,6 +4,7 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     users: null,
+    salaries : null,
     deducts: null,
     rate: null,
     PAYE: null,
@@ -51,6 +52,11 @@ export default createStore({
 
     },
 
+    setSalaries(state, payload) {
+      state.salaries = payload
+
+    },
+
     setDeduct(state, payload) {
       state.deducts = payload
 
@@ -90,6 +96,13 @@ export default createStore({
       console.log(data.data.users)
 
       commit('setUsers', data.data.users)
+    },
+
+    async getSalaries({ commit }) {
+      let data = await axios.get('http://localhost:9090/salaries')
+      console.log(data.data.salaries)
+
+      commit('setSalaries', data.data.salaries)
     },
 
     async fetchDeduction({ commit }, EmpID) {

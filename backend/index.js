@@ -1,6 +1,6 @@
 import express from 'express' 
 import cors from 'cors'
-import { deductSalaryCon, testUserCon,rateCon, PAYECon, UIFCon, HealthInsureCon, TakeHomeCon } from './controller/usersCon.js'
+import { deductSalaryCon, LoadUserCon,rateCon, PAYECon, UIFCon, HealthInsureCon, TakeHomeCon, LoadSalariesCon } from './controller/usersCon.js'
 
 
 const app = express()
@@ -12,7 +12,8 @@ app.use(express.json())
 
 //-------------------------------------------------------------------------------------------------
 
-app.get('/users', testUserCon )
+app.get('/users', LoadUserCon )
+app.get('/salaries', LoadSalariesCon )
 app.get('/users/deduct/:id', deductSalaryCon )     
 app.get('/users/hrrate/:ID', rateCon )
 app.get('/users/PAYE/:ID', PAYECon )     

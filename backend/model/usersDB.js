@@ -1,7 +1,13 @@
 import { pool } from "../config/config.js"
 
-const testUsers = async () => {
+const LoadUsers = async () => {
     let [row] = await pool.query('SELECT * FROM users')
+    return row
+
+}
+
+const LoadSalaries = async () => {
+    let [row] = await pool.query('SELECT * FROM salaries')
     return row
 
 }
@@ -103,4 +109,4 @@ const CalculateTakeHome = async (EmpID) => {
     
 }
 
-export {testUsers,CalculateDeducts,calculateRatePHR,CalculatePAYE,CalculateUIF, CalculateHealthInsure,CalculateTakeHome}
+export {LoadUsers,CalculateDeducts,calculateRatePHR,CalculatePAYE,CalculateUIF, CalculateHealthInsure,CalculateTakeHome,LoadSalaries}

@@ -47,7 +47,7 @@
                                             <h3 class="fw-bolder">Employee Salary & Payroll overview:</h3>
                                             <dl class="EmployeeInfo">
                                                 <dt>Employee ID :</dt>
-                                                <dd>{{ selectedEmployee?.employeeId }}</dd>
+                                                <dd>{{  }}</dd>
 
                                                 <dt>Hours employee worked:</dt>
                                                 <dd>{{ selectedEmployee?.hoursWorked }}</dd>
@@ -73,9 +73,8 @@
                                 <div class="col-lg-5 text-center  ">
                                     <select v-model="selectedEmployeeId" name="EmployeeSelect" id="cmbEmployeeSelect">
                                         <option selected disabled hidden value="">Choose Employee</option>
-                                        <option v-for="EmployeeData in EmployeeInfo" :key="EmployeeData.employeeId"
-                                            :value="EmployeeData.employeeId">
-                                            ID:{{ EmployeeData.employeeId }} {{ EmployeeData.name }}
+                                        <option v-for="EmpID in users" :key="EmpID.EmployeeID" :value="EmpID.EmployeeID">
+                                            ID:{{ EmpID.EmployeeID }} {{ EmpID.Name }}
 
                                         </option>
                                     </select>
@@ -119,10 +118,10 @@
                             </div>
 
                             <div v-if="selectedEmployeeId || deduction" class="modal-body">
-                                <p> Number of deductions: {{ selectedEmployee.leaveDeductions }}</p>
+                                <p> Number of deductions: {{ salaries.LeaveDeductions }}</p>
                                 <p>Deductions in Rands: R {{ deduction }}</p>
                                 <p><strong>Other Deductions</strong></p>
-                                <p>PAYE - 36  %</p>
+                                <p>PAYE - 36 %</p>
                                 <p>UIF - 2%</p>
                                 <p>Health Insurance - 5%</p>
 
@@ -148,7 +147,7 @@
                     <div v-if="selectedEmployeeId && payslipVisible" class="row mb-3 ">
 
                         <div class="col-md-8 themed-grid-col text-start">
-                            MordernTech Employee ID: {{ selectedEmployee?.employeeId }}
+                            MordernTech Employee ID: {{ selectedEmployee.EmployeeID }}
                             <br>
                             Employee Name: {{ selectedEmployeeDetails?.name }}
                             <br>
@@ -257,6 +256,13 @@ export default {
         }
 
     },
+
+    mounted() {
+        this.$store.dispatch('getUsers');
+        this.$store.dispatch('getSalaries');
+
+    },
+
     //Function made to be called just to test if json came through, wont be used anywhere in 'live' site  
     methods: {
 
@@ -281,7 +287,23 @@ export default {
             return this.EmployeeInfo.find(
                 EmployeeData => EmployeeData.employeeId === Number(this.selectedEmployeeId)
             );
+            
+        },
+        
+        users() {
+            return this.$store.state.users;
+        },
+        
+        selectedUser() {
+            return this.users.find(
+                EmpID => EmpID.EmployeeID === Number(this.selectedEmployeeId)
+            );
+        
+            
+        },
 
+        salaries() {
+            return this.$store.state.salaries;
         },
 
         //Simple calcalution to find the deduction in rands
@@ -340,7 +362,7 @@ export default {
         //     return 0;
 
         // },
-//---------------------------------Backend Calculations:--------------------------------------------------
+        //---------------------------------Backend Calculations:--------------------------------------------------
         deduction() {
             console.log('Deduction from store:', this.$store.getters.getDeduction);
             return this.$store.getters.getDeduction;
@@ -373,6 +395,7 @@ export default {
 
 
 
+
     },
     watch: {
         selectedEmployeeId(id) {
@@ -386,6 +409,8 @@ export default {
 
         }
     },
+
+
 }
 
 </script>
