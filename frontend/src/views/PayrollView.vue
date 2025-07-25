@@ -122,7 +122,7 @@
                                 <p> Number of deductions: {{ selectedEmployee.leaveDeductions }}</p>
                                 <p>Deductions in Rands: R {{ deduction }}</p>
                                 <p><strong>Other Deductions</strong></p>
-                                <p>PAYE - 34%</p>
+                                <p>PAYE - 36  %</p>
                                 <p>UIF - 2%</p>
                                 <p>Health Insurance - 5%</p>
 
@@ -212,21 +212,21 @@
                             <br>
                             <br>
                             <br>
-                            34%
+                            36%
                             <br>
-                            R {{ calculatePAYE.toFixed(2).toLocaleString() }}
+                            R {{ PAYE.toFixed(2).toLocaleString() }}
                             <br>
                             2%
                             <br>
-                            R {{ calculateUIF.toFixed(2).toLocaleString() }}
+                            R {{ UIF.toFixed(2).toLocaleString() }}
                             <br>
                             5%
                             <br>
-                            R {{ calculateHealthInsure.toFixed(2).toLocaleString() }}
+                            R {{ HealthInsure.toFixed(2).toLocaleString() }}
                             <br>
                             <br>
                             <br>
-                            R {{ calculateTakeHome.toFixed(2).toLocaleString() }}
+                            R {{ TakeHome.toFixed(2).toLocaleString() }}
 
                         </div>
 
@@ -259,10 +259,6 @@ export default {
     },
     //Function made to be called just to test if json came through, wont be used anywhere in 'live' site  
     methods: {
-        tester() {
-            return console.log(this.EmployeeList);
-
-        },
 
         showPayslipDetails() {
             if (this.selectedEmployeeId) {
@@ -305,45 +301,45 @@ export default {
 
         // },
 
-        calculatePAYE() {
-            if (this.selectedEmployee && this.selectedEmployeeDetails) {
-                let iPercent = 36;
-                return this.selectedEmployee.finalSalary * (iPercent / 100)
+        // calculatePAYE() {
+        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
+        //         let iPercent = 36;
+        //         return this.selectedEmployee.finalSalary * (iPercent / 100)
 
-            }
+        //     }
 
-        },
+        // },
 
-        calculateUIF() {
-            if (this.selectedEmployee && this.selectedEmployeeDetails) {
-                let iPercent = 2;
-                return this.selectedEmployee.finalSalary * (iPercent / 100)
+        // calculateUIF() {
+        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
+        //         let iPercent = 2;
+        //         return this.selectedEmployee.finalSalary * (iPercent / 100)
 
-            }
+        //     }
 
-        },
+        // },
 
-        calculateHealthInsure() {
-            if (this.selectedEmployee && this.selectedEmployeeDetails) {
-                let iPercent = 5;
-                return this.selectedEmployee.finalSalary * (iPercent / 100)
+        // calculateHealthInsure() {
+        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
+        //         let iPercent = 5;
+        //         return this.selectedEmployee.finalSalary * (iPercent / 100)
 
-            }
+        //     }
 
-        },
+        // },
 
-        calculateTakeHome() {
-            if (this.selectedEmployee && this.selectedEmployeeDetails) {
-                return (
-                    this.selectedEmployee.finalSalary -
-                    this.calculatePAYE -
-                    this.calculateUIF -
-                    this.calculateHealthInsure
-                );
-            }
-            return 0;
+        // calculateTakeHome() {
+        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
+        //         return (
+        //             this.selectedEmployee.finalSalary -
+        //             this.calculatePAYE -
+        //             this.calculateUIF -
+        //             this.calculateHealthInsure
+        //         );
+        //     }
+        //     return 0;
 
-        },
+        // },
 //---------------------------------Backend Calculations:--------------------------------------------------
         deduction() {
             console.log('Deduction from store:', this.$store.getters.getDeduction);
@@ -355,17 +351,38 @@ export default {
             return this.$store.getters.getRateHr;
         },
 
+        PAYE() {
+            console.log('PAYE from store:', this.$store.getters.getPAYE);
+            return this.$store.getters.getPAYE;
+        },
+
+        UIF() {
+            console.log('UIF from store:', this.$store.getters.getUIF);
+            return this.$store.getters.getUIF;
+        },
+
+        HealthInsure() {
+            console.log('HealthInsure from store:', this.$store.getters.getHealthInsure);
+            return this.$store.getters.getHealthInsure;
+        },
+
+        TakeHome() {
+            console.log('TakeHome from store:', this.$store.getters.getTakeHome);
+            return this.$store.getters.getTakeHome;
+        },
+
 
 
     },
     watch: {
         selectedEmployeeId(id) {
             this.$store.dispatch('fetchDeduction', id);
-
-        },
-
-        selectedEmployeeId(id) {
             this.$store.dispatch('fetchRateHr', id);
+            this.$store.dispatch('fetchPAYE', id);
+            this.$store.dispatch('fetchUIF', id);
+            this.$store.dispatch('fetchHealthInsure', id);
+            this.$store.dispatch('fetchTakeHome', id);
+
 
         }
     },

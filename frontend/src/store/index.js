@@ -3,59 +3,141 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    users:null,
-    deducts : null,
-    rate : null
+    users: null,
+    deducts: null,
+    rate: null,
+    PAYE: null,
+    UIF : null,
+    HealthInsure : null,
+    TakeHome : null,
 
   },
 
   getters: {
-    getDeduction(state){
+    getDeduction(state) {
       console.log(`Getter Value: ${JSON.stringify(state)}`)
       return state.deducts
     },
 
-    getRateHr(state){
+    getRateHr(state) {
       return state.rate
-    }
+    },
+
+    getPAYE(state) {
+      return state.PAYE
+
+    },
+
+    getUIF(state) {
+      return state.UIF
+
+    },
+
+    getHealthInsure(state) {
+      return state.HealthInsure
+
+    },
+
+    getTakeHome(state) {
+      return state.TakeHome
+
+    },
 
   },
 
   mutations: {
-    setUsers(state,payload){
-      state.users = payload 
-    },
-    setDeduct(state,payload){
-      state.deducts = payload 
-    },
-    setRateHr(state,payload){
-      state.rate = payload 
+    setUsers(state, payload) {
+      state.users = payload
+
     },
 
+    setDeduct(state, payload) {
+      state.deducts = payload
+
+    },
+
+    setRateHr(state, payload) {
+      state.rate = payload
+
+    },
+
+    setPAYE(state, payload) {
+      state.PAYE = payload
+
+    },
+
+    setUIF(state, payload) {
+      state.UIF = payload
+
+    },
+
+    setHealthInsure(state, payload) {
+      state.HealthInsure = payload
+
+    },
+
+    setTakeHome(state, payload) {
+      state.TakeHome = payload
+
+    },
+    
   },
 
   actions: {
-    async getUsers({commit}){
+
+    async getUsers({ commit }) {
       let data = await axios.get('http://localhost:9090/users')
       console.log(data.data.users)
-      
-      commit('setUsers',data.data.users)
+
+      commit('setUsers', data.data.users)
     },
 
-    async fetchDeduction({commit},EmpID){
+    async fetchDeduction({ commit }, EmpID) {
       let res = await axios.get(`http://localhost:9090/users/deduct/${EmpID}`)
       console.log(`deduct store action${res.data.deduction}`)
 
 
-      commit('setDeduct',res.data.deduction)
+      commit('setDeduct', res.data.deduction)
     },
 
-    async fetchRateHr({commit},EmpId){
+    async fetchRateHr({ commit }, EmpId) {
       let res = await axios.get(`http://localhost:9090/users/hrrate/${EmpId}`)
-      console.log(res.data.rateHr)
+      console.log(`Rate store action:${res.data.rateHr}`)
 
-      commit('setRateHr',res.data.rateHr)
-    }
+      commit('setRateHr', res.data.rateHr)
+    },
+
+    async fetchPAYE({ commit }, EmpID) {
+      let res = await axios.get(`http://localhost:9090/users/PAYE/${EmpID}`)
+      console.log(`PAYE store action:${res.data.PAYE}`)
+
+      commit('setPAYE', res.data.PAYE)
+
+    },
+
+    async fetchUIF({ commit }, EmpID) {
+      let res = await axios.get(`http://localhost:9090/users/UIF/${EmpID}`)
+      console.log(`UIF store action:${res.data.UIF}`)
+
+      commit('setUIF', res.data.UIF)
+
+    },
+
+    async fetchHealthInsure({ commit }, EmpID) {
+      let res = await axios.get(`http://localhost:9090/users/HealthInsure/${EmpID}`)
+      console.log(`HealthInsure store action:${res.data.HealthInsure}`)
+
+      commit('setHealthInsure', res.data.HealthInsure)
+
+    },
+
+    async fetchTakeHome({ commit }, EmpID) {
+      let res = await axios.get(`http://localhost:9090/users/TakeHome/${EmpID}`)
+      console.log(`TakeHome store action:${res.data.TakeHome}`)
+
+      commit('setTakeHome', res.data.TakeHome)
+
+    },
 
   },
 
