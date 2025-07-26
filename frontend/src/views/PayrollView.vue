@@ -45,23 +45,21 @@
 
                                         <div class="info-card">
                                             <h3 class="fw-bolder">Employee Salary & Payroll overview:</h3>
-                                            <dl class="EmployeeInfo">
+                                            <dl v-if="selectedUserInfo && selectedSalaryInfo" class="EmployeeInfo">
                                                 <dt>Employee ID :</dt>
-                                                <dd>{{  }}</dd>
+                                                <dd>{{ selectedUserInfo.EmployeeID }}</dd>
 
                                                 <dt>Hours employee worked:</dt>
-                                                <dd>{{ selectedEmployee?.hoursWorked }}</dd>
+                                                <dd>{{ selectedSalaryInfo.HoursWorked }}</dd>
 
                                                 <dt>Hourly Rate:</dt>
-                                                <dd>R {{ ratePHR ? ratePHR.toFixed(2) : 'N/A' }} / hr
-                                                </dd>
+                                                <dd>R {{ ratePHR ? ratePHR.toFixed(2) : 'N/A' }} / hr</dd>
 
                                                 <dt>Amount of deductions:</dt>
-                                                <dd>{{ selectedEmployee?.leaveDeductions }}</dd>
+                                                <dd>{{ selectedSalaryInfo.LeaveDeductions }}</dd>
 
                                                 <dt>Gross Salary Amount:</dt>
-                                                <dd>{{ selectedEmployee?.finalSalary }}</dd>
-
+                                                <dd>{{ selectedSalaryInfo.FinalSalary }}</dd>
                                             </dl>
 
                                         </div>
@@ -73,8 +71,10 @@
                                 <div class="col-lg-5 text-center  ">
                                     <select v-model="selectedEmployeeId" name="EmployeeSelect" id="cmbEmployeeSelect">
                                         <option selected disabled hidden value="">Choose Employee</option>
-                                        <option v-for="EmpID in users" :key="EmpID.EmployeeID" :value="EmpID.EmployeeID">
+                                        <option v-for="EmpID in UsersInfo" :key="EmpID.EmployeeID"
+                                            :value="EmpID.EmployeeID">
                                             ID:{{ EmpID.EmployeeID }} {{ EmpID.Name }}
+
 
                                         </option>
                                     </select>
@@ -118,7 +118,7 @@
                             </div>
 
                             <div v-if="selectedEmployeeId || deduction" class="modal-body">
-                                <p> Number of deductions: {{ salaries.LeaveDeductions }}</p>
+                                <p> Number of deductions: {{ selectedSalaryInfo.LeaveDeductions }}</p>
                                 <p>Deductions in Rands: R {{ deduction }}</p>
                                 <p><strong>Other Deductions</strong></p>
                                 <p>PAYE - 36 %</p>
@@ -147,11 +147,11 @@
                     <div v-if="selectedEmployeeId && payslipVisible" class="row mb-3 ">
 
                         <div class="col-md-8 themed-grid-col text-start">
-                            MordernTech Employee ID: {{ selectedEmployee.EmployeeID }}
+                            MordernTech Employee ID: {{ selectedUserInfo.EmployeeID }}
                             <br>
-                            Employee Name: {{ selectedEmployeeDetails?.name }}
+                            Employee Name: {{ selectedUserInfo.Name }}
                             <br>
-                            Company Position: {{ selectedEmployeeDetails?.position }}
+                            Company Position: {{ selectedUserInfo.Position }}
                             <br>
 
                             <br>
@@ -160,11 +160,11 @@
                         </div>
 
                         <div class="col-6 col-md-4 themed-grid-col text-start">
-                            Employee Department: {{ selectedEmployeeDetails?.department }}
+                            Employee Department: {{ selectedUserInfo.Department }}
                             <br>
                             Hourly Rate:R {{ ratePHR ? ratePHR.toFixed(2) : 'N/A' }}
                             <br>
-                            Hours Worked: {{ selectedEmployee?.hoursWorked }}
+                            Hours Worked: {{ selectedSalaryInfo.HoursWorked }}
 
 
                         </div>
@@ -200,13 +200,13 @@
                         </div>
 
                         <div class="col-6 col-md-4 themed-grid-col text-end">
-                            R{{ selectedEmployeeDetails?.salary }}
+                            R{{ selectedUserInfo.Salary }}
                             <br>
-                            {{ selectedEmployee?.leaveDeductions }}
+                            {{ selectedSalaryInfo.LeaveDeductions }}
                             <br>
                             R {{ deduction }}
                             <br>
-                            R {{ selectedEmployee?.finalSalary }}
+                            R {{ selectedSalaryInfo.FinalSalary }}
 
                             <br>
                             <br>
@@ -248,18 +248,26 @@ export default {
     data() {
         return {
             //Creating objects to hold the json data and selected id from <select> element above
-            EmployeeList: PayrollData.payrollData,                  //Holds employee payroll data
-            EmployeeInfo: EmployeeData.employeeInformation,         //Holds general employee details
+            // EmployeeList: PayrollData.payrollData,                  //Holds employee payroll data
+            // EmployeeInfo: EmployeeData.employeeInformation,         //Holds general employee details
             selectedEmployeeId: '',                                  //Will be filled with ID from select elemnt above
-            payslipVisible: false
+            payslipVisible: false,
+            UsersInfo: [],
+            SalaryInfo: [],
 
         }
 
     },
 
     mounted() {
-        this.$store.dispatch('getUsers');
-        this.$store.dispatch('getSalaries');
+        // this.$store.dispatch('getUsers');
+        this.$store.dispatch('getUsers').then(() => {
+            this.UsersInfo = this.$store.state.users;
+        });
+        this.$store.dispatch('getSalaries').then(() => {
+            this.SalaryInfo = this.$store.state.salaries;
+        });
+
 
     },
 
@@ -277,91 +285,30 @@ export default {
     //Selecting the related information using the v-model/selected id from dropdown
     //Find is used to search through the array to find matching Employee ID
     computed: {
-        selectedEmployee() {
-            return this.EmployeeList.find(
-                EmployeePay => EmployeePay.employeeId === Number(this.selectedEmployeeId)
+        selectedSalaryInfo() {
+            return this.SalaryInfo.find(
+                EmployeePay => EmployeePay.EmployeeID === Number(this.selectedEmployeeId)
             );
         },
 
-        selectedEmployeeDetails() {
-            return this.EmployeeInfo.find(
-                EmployeeData => EmployeeData.employeeId === Number(this.selectedEmployeeId)
+        selectedUserInfo() {
+            return this.UsersInfo.find(
+                EmployeeData => EmployeeData.EmployeeID === Number(this.selectedEmployeeId)
             );
-            
+
         },
-        
-        users() {
+
+
+
+        UsersUpd() {
             return this.$store.state.users;
-        },
-        
-        selectedUser() {
-            return this.users.find(
-                EmpID => EmpID.EmployeeID === Number(this.selectedEmployeeId)
-            );
-        
-            
+
         },
 
-        salaries() {
+        SalariesUpd() {
             return this.$store.state.salaries;
         },
 
-        //Simple calcalution to find the deduction in rands
-        // deductionInRands() {
-        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
-        //         return this.selectedEmployeeDetails.salary - this.selectedEmployee.finalSalary;
-        //     }
-        // },
-
-        //Calculation to find the pay rate per hour of an employee
-        // employeeratephr() {
-        //     if (this.selectedEmployee && this.selectedEmployeeDetails && this.selectedEmployee.hoursWorked > 0) {
-        //         return this.selectedEmployeeDetails.salary / this.selectedEmployee.hoursWorked
-        //     }
-        //     return 0;
-
-
-        // },
-
-        // calculatePAYE() {
-        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
-        //         let iPercent = 36;
-        //         return this.selectedEmployee.finalSalary * (iPercent / 100)
-
-        //     }
-
-        // },
-
-        // calculateUIF() {
-        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
-        //         let iPercent = 2;
-        //         return this.selectedEmployee.finalSalary * (iPercent / 100)
-
-        //     }
-
-        // },
-
-        // calculateHealthInsure() {
-        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
-        //         let iPercent = 5;
-        //         return this.selectedEmployee.finalSalary * (iPercent / 100)
-
-        //     }
-
-        // },
-
-        // calculateTakeHome() {
-        //     if (this.selectedEmployee && this.selectedEmployeeDetails) {
-        //         return (
-        //             this.selectedEmployee.finalSalary -
-        //             this.calculatePAYE -
-        //             this.calculateUIF -
-        //             this.calculateHealthInsure
-        //         );
-        //     }
-        //     return 0;
-
-        // },
         //---------------------------------Backend Calculations:--------------------------------------------------
         deduction() {
             console.log('Deduction from store:', this.$store.getters.getDeduction);
@@ -407,7 +354,14 @@ export default {
             this.$store.dispatch('fetchTakeHome', id);
 
 
-        }
+        },
+        //This will check if Users in vuex/store will change, used in case user table in MySQL changes
+        UsersUpd(newUsers) {
+            this.UsersInfo = newUsers;
+        },
+        SalariesUpd(newSalaries) {
+            this.SalaryInfo = newSalaries;
+        },
     },
 
 
