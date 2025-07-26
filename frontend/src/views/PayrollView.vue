@@ -240,20 +240,17 @@
     </template>
 
 <script>
-//Importing locally stored json files
-import PayrollData from '@/assets/Resources/payroll_data.json'
-import EmployeeData from '@/assets/Resources/employee_info.json'
+
 
 export default {
     data() {
         return {
-            //Creating objects to hold the json data and selected id from <select> element above
-            // EmployeeList: PayrollData.payrollData,                  //Holds employee payroll data
-            // EmployeeInfo: EmployeeData.employeeInformation,         //Holds general employee details
+            //Creating objects to hold the Vuex/Store data and selected id from <select> element above
+
             selectedEmployeeId: '',                                  //Will be filled with ID from select elemnt above
             payslipVisible: false,
-            UsersInfo: [],
-            SalaryInfo: [],
+            UsersInfo: [],                                           //Used to locally store Vuex data
+            SalaryInfo: [],                                          //Used to locally store Vuex data
 
         }
 
@@ -271,7 +268,7 @@ export default {
 
     },
 
-    //Function made to be called just to test if json came through, wont be used anywhere in 'live' site  
+ 
     methods: {
 
         showPayslipDetails() {
