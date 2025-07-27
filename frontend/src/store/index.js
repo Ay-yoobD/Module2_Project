@@ -11,6 +11,7 @@ export default createStore({
     UIF : null,
     HealthInsure : null,
     TakeHome : null,
+    reviews: null
 
   },
 
@@ -54,6 +55,11 @@ export default createStore({
 
     setSalaries(state, payload) {
       state.salaries = payload
+
+    },
+
+    setReviews(state, payload) {
+      state.reviews = payload
 
     },
 
@@ -103,6 +109,14 @@ export default createStore({
       console.log(data.data.salaries)
 
       commit('setSalaries', data.data.salaries)
+    },
+
+    async getReviews({ commit }) {
+      let data = await axios.get('http://localhost:9090/reviews')
+      console.log(data.data)
+
+
+      commit('setReviews', data.data.reviews)
     },
 
     async fetchDeduction({ commit }, EmpID) {

@@ -1,4 +1,4 @@
-import {LoadUsers,CalculateDeducts,calculateRatePHR,CalculatePAYE,CalculateUIF,CalculateHealthInsure, CalculateTakeHome,LoadSalaries} from  '../model/usersDB.js'
+import {LoadUsers,CalculateDeducts,calculateRatePHR,CalculatePAYE,CalculateUIF,CalculateHealthInsure, CalculateTakeHome,LoadSalaries, LoadReviews} from  '../model/usersDB.js'
 
 const LoadUserCon = async(req,res)=>{
     res.json({
@@ -10,6 +10,13 @@ const LoadUserCon = async(req,res)=>{
 const LoadSalariesCon = async(req,res)=>{
     res.json({
        salaries: await LoadSalaries() 
+    })
+
+}
+
+const LoadReviewsCon = async(req,res)=>{
+    res.json({
+       reviews: await LoadReviews() 
     })
 
 }
@@ -62,4 +69,4 @@ const TakeHomeCon = async (req,res) => {
 }
 
 
-export {LoadUserCon,deductSalaryCon,rateCon,PAYECon,UIFCon,HealthInsureCon,TakeHomeCon,LoadSalariesCon}
+export {LoadUserCon,deductSalaryCon,rateCon,PAYECon,UIFCon,HealthInsureCon,TakeHomeCon,LoadSalariesCon,LoadReviewsCon}

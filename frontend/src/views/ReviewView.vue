@@ -10,18 +10,18 @@
     <label for="employeeSelect" class="form-label">Select an Employee:</label>
     <select id="employeeSelect" v-model="selectedEmployeeId" class="form-select mb-3">
       <option disabled value="">-- Choose an Employee --</option>
-      <option v-for="emp in employees" :key="emp.employeeId" :value="emp.employeeId">
-        {{ emp.name }}
+      <option v-for="emp in UsersInfo" :key="emp.EmployeeID" :value="emp.EmployeeID">
+        {{ emp.Name }}
       </option>
     </select>
 
     <!-- Review Cards -->
-    <div v-if="filteredReviews.length">
+    <div v-if="filteredReviews.length ">
       <div v-for="review in filteredReviews" :key="review.id" class="card p-3 mb-3">
-        <h5 class="mb-1">{{ getEmployeeName(review.employeeId) }}</h5>
-        <small class="text-muted">Reviewed by: {{ review.reviewer }} on {{ review.date }}</small>
-        <p class="mb-1">Rating: {{ review.rating }}/5</p>
-        <p>{{ review.comments }}</p>
+        <h5 class="mb-1">{{ getEmployeeName(review.EmployeeID) }}</h5>
+        <small class="text-muted">Reviewed by: {{ review.Reviewer }} on {{ review.Date }}</small>
+        <p class="mb-1">Rating: {{ review.Rating }}/5</p>
+        <p>{{ review.Comments }}</p>
       </div>
     </div>
     <p v-else-if="selectedEmployeeId">No reviews found for this employee.</p>
@@ -29,50 +29,84 @@
 </template>
 
 <script>
+
+
 export default {
   data() {
     return {
-      employees: [],
-      reviews: [],
+      UsersInfo: [],
+      ReviewInfo: [],
       selectedEmployeeId: ''
     }
   },
   computed: {
+
     filteredReviews() {
-      if (!this.selectedEmployeeId) return [];
-      return this.reviews.filter(
-        review => review.employeeId === parseInt(this.selectedEmployeeId)
+      if (!this.selectedEmployeeId || !Array.isArray(this.ReviewInfo)) return [];
+      return this.ReviewInfo.filter(
+        review => review.EmployeeID === Number(this.selectedEmployeeId)
       );
-    }
+    },
+
+
+    selectedUserInfo() {
+      return this.UsersInfo.find(
+        EmployeeData => EmployeeData.EmployeeID === Number(this.selectedEmployeeId)
+      );
+
+    },
+
+    UsersUpd() {
+      return this.$store.state.users;
+
+    },
+
+    reviews() {
+      return this.$store.state.reviews;
+    },
+
+
   },
+
   methods: {
     getEmployeeName(id) {
-      const emp = this.employees.find(e => e.employeeId === id);
-      return emp ? emp.name : 'Unknown';
+      const EmpID = this.UsersInfo.find(i => i.EmployeeID === id);
+      return EmpID ? EmpID.Name : 'Unknown';
     },
-    async fetchData() {
-      const empRes = await fetch('/employee_info.json');
-      const empData = await empRes.json();
-      this.employees = empData.employeeInformation;
 
-      const revRes = await fetch('/employee_reviews.json');
-      const revData = await revRes.json();
-      this.reviews = revData;
-    }
   },
+
   mounted() {
-    this.fetchData();
+
+
+    this.$store.dispatch('getReviews').then(() => {
+      this.ReviewInfo = this.$store.state.reviews;
+      console.log(this.ReviewInfo)
+    });
+
+    this.$store.dispatch('getUsers').then(() => {
+      this.UsersInfo = this.$store.state.users;
+    });
+   console.log(this.ReviewInfo)
+  },
+
+  watch: {
+    UsersUpd(newUsers) {
+      this.UsersInfo = newUsers;
+    },
+
   }
+
 }
+
+
 </script>
 
 <style scoped>
 .card {
-  
+
   border: #0c2c47 solid 3px;
   padding: 35px;
   border-radius: 5px;
 }
-
-
 </style>

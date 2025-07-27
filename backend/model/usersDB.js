@@ -12,6 +12,12 @@ const LoadSalaries = async () => {
 
 }
 
+const LoadReviews = async () => {
+    let [row] = await pool.query('SELECT * FROM reviews')
+    return row
+
+}
+
 const CalculateDeducts = async (EmpID) => {
     // let initialSalary = await pool.query('SELECT Salary FROM users WHERE EmployeeID = ?',[EmpID])
     // let finalSalary = await pool.query('SELECT FinalSalary FROM salaries WHERE EmployeeID = ? ',[EmpID])
@@ -109,4 +115,4 @@ const CalculateTakeHome = async (EmpID) => {
     
 }
 
-export {LoadUsers,CalculateDeducts,calculateRatePHR,CalculatePAYE,CalculateUIF, CalculateHealthInsure,CalculateTakeHome,LoadSalaries}
+export {LoadUsers,CalculateDeducts,calculateRatePHR,CalculatePAYE,CalculateUIF, CalculateHealthInsure,CalculateTakeHome,LoadSalaries, LoadReviews}
