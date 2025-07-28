@@ -241,10 +241,10 @@
 
 <script>
 
-
 export default {
     data() {
         return {
+
             //Creating objects to hold the Vuex/Store data and selected id from <select> element above
 
             selectedEmployeeId: '',                                  //Will be filled with ID from select elemnt above
@@ -256,19 +256,31 @@ export default {
 
     },
 
-    mounted() {
-        // this.$store.dispatch('getUsers');
-        this.$store.dispatch('getUsers').then(() => {
-            this.UsersInfo = this.$store.state.users;
-        });
-        this.$store.dispatch('getSalaries').then(() => {
-            this.SalaryInfo = this.$store.state.salaries;
-        });
 
+
+    async mounted() {
+
+        try {
+            await this.$store.dispatch('getUsers');
+            this.UsersInfo = this.$store.state.users;
+        } catch (error) {
+            console.error('Failed to load users:', error);
+            alert('Error loading users. Please try again later.');
+        }
+
+        try {
+            await this.$store.dispatch('getSalaries');
+            this.SalaryInfo = this.$store.state.salaries;
+        } catch (error) {
+            console.error('Failed to load salaries:', error);
+            alert('Error loading salaries. Please try again later.');
+        }
 
     },
 
  
+
+
     methods: {
 
         showPayslipDetails() {
@@ -277,6 +289,7 @@ export default {
             }
         }
     },
+
 
 
     //Selecting the related information using the v-model/selected id from dropdown
@@ -305,6 +318,8 @@ export default {
         SalariesUpd() {
             return this.$store.state.salaries;
         },
+
+
 
         //---------------------------------Backend Calculations:--------------------------------------------------
         deduction() {
@@ -341,17 +356,50 @@ export default {
 
 
     },
-    watch: {
-        selectedEmployeeId(id) {
-            this.$store.dispatch('fetchDeduction', id);
-            this.$store.dispatch('fetchRateHr', id);
-            this.$store.dispatch('fetchPAYE', id);
-            this.$store.dispatch('fetchUIF', id);
-            this.$store.dispatch('fetchHealthInsure', id);
-            this.$store.dispatch('fetchTakeHome', id);
 
+
+    watch: {
+        async selectedEmployeeId(id) {
+
+            try {
+                await this.$store.dispatch('fetchDeduction', id);
+            } catch (err) {
+                console.error('Error fetching deduction:', err);
+            }
+
+            try {
+                await this.$store.dispatch('fetchRateHr', id);
+            } catch (err) {
+                console.error('Error fetching rate/hr:', err);
+            }
+
+            try {
+                await this.$store.dispatch('fetchPAYE', id);
+            } catch (err) {
+                console.error('Error fetching PAYE:', err);
+            }
+
+            try {
+                await this.$store.dispatch('fetchUIF', id);
+            } catch (err) {
+                console.error('Error fetching UIF:', err);
+            }
+
+            try {
+                await this.$store.dispatch('fetchHealthInsure', id);
+            } catch (err) {
+                console.error('Error fetching health insurance:', err);
+            }
+
+            try {
+                await this.$store.dispatch('fetchTakeHome', id);
+            } catch (err) {
+                console.error('Error fetching take-home pay:', err);
+            }
 
         },
+
+
         //This will check if Users in vuex/store will change, used in case user table in MySQL changes
         UsersUpd(newUsers) {
             this.UsersInfo = newUsers;
@@ -364,7 +412,9 @@ export default {
 
 }
 
-</script>
+</script>  
+    
+
 
 <style>
 .MainPayRoll {
