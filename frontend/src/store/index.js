@@ -98,7 +98,7 @@ export default createStore({
   actions: {
 
     async getUsers({ commit }) {
-      let data = await axios.get('http://localhost:9090/users')
+      let data = await axios.get('http://localhost:9090/users/load')
       console.log(data.data.users)
 
       commit('setUsers', data.data.users)

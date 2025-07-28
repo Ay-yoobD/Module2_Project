@@ -12,7 +12,7 @@ app.use(express.json())
 
 //-------------------------------------------------------------------------------------------------
 
-app.get('/users', LoadUserCon )
+app.get('/users/load', LoadUserCon )
 app.get('/salaries', LoadSalariesCon )
 app.get('/reviews', LoadReviewsCon )
 app.get('/users/deduct/:id', deductSalaryCon )     
