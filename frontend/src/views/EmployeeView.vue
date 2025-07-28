@@ -37,7 +37,8 @@
     </table>
 
     <!-- Modal -->
-    <div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true" ref="modal">
+    <div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true"
+      ref="modal">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -108,7 +109,7 @@ export default {
         contact: '',
         username: '',
         password: ''
-      },                            
+      },
       isEdit: false,
       currentId: null
     };
@@ -151,36 +152,53 @@ export default {
       this.isEdit = true;
       new bootstrap.Modal(this.$refs.modal).show();
     },
+
     async saveEmployee() {
       try {
+
+        if (!this.isEdit) {
+
+          if (!this.form.username || !this.form.password) {
+            alert('Username and Password are required for new employees.');
+            return;
+
+          }
+
+        }
+
         const payload = {
           Name: this.form.name,
           Position: this.form.position,
           Department: this.form.department,
           Salary: this.form.salary,
           EmploymentHistory: this.form.employmentHistory,
-          Contact: this.form.contact
+          Contact: this.form.contact,
+
         };
 
         if (!this.isEdit) {
           payload.Username = this.form.username;
           payload.Password = this.form.password;
+
         }
 
         if (this.isEdit) {
           await axios.put(`http://localhost:9090/users/${this.currentId}`, payload);
+
         } else {
           await axios.post('http://localhost:9090/users', payload);
+
         }
 
         bootstrap.Modal.getInstance(this.$refs.modal).hide();
         this.resetForm();
-        this.fetchEmployees();
+        await this.fetchEmployees();
       } catch (error) {
-        alert("Failed to save employee");
+        alert('Failed to save employee');
         console.error(error);
       }
     },
+
     async deleteEmployee(id) {
       if (confirm("Are you sure you want to delete this employee?")) {
         try {
@@ -220,7 +238,8 @@ export default {
   padding: 32px;
 }
 
-th, td {
+th,
+td {
   text-align: left;
   padding: 10px 8px;
   font-size: 1rem;

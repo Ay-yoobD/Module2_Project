@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mysql2 from 'mysql2/promise';
+import { HashingPass } from './hashing.js';
 
 dotenv.config();
 
@@ -31,16 +32,43 @@ app.get('/users', async (req, res) => {
 });
 
 // POST new user
+
 app.post('/users', async (req, res) => {
-  const { Name, Position, Department, Salary, EmploymentHistory, Contact } = req.body;
+  const {
+    Name,
+    Position,
+    Department,
+    Salary,
+    EmploymentHistory,
+    Contact,
+    Username,
+    Password 
+  } = req.body;
+
   try {
+    if (!Username || !Password) {
+      return res.status(400).json({ error: 'Username and Password are required' });
+    }
+
+    const HashingPassword = await HashingPass(Password);
+
     const [result] = await pool.query(
       `INSERT INTO users 
-        (Name, Position, Department, Salary, EmploymentHistory, Contact) 
-       VALUES (?, ?, ?, ?, ?, ?)`,
-      [Name, Position, Department, Salary, EmploymentHistory, Contact]
+        (Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        Name,
+        Position,
+        Department,
+        Salary,
+        EmploymentHistory,
+        Contact,
+        Username,
+        HashingPassword 
+      ]
     );
-    // Return the new employee with generated ID
+
+ 
     const newUser = {
       EmployeeID: result.insertId,
       Name,
@@ -49,7 +77,9 @@ app.post('/users', async (req, res) => {
       Salary,
       EmploymentHistory,
       Contact,
+      Username
     };
+
     res.status(201).json(newUser);
   } catch (error) {
     console.error('Error adding user:', error);
