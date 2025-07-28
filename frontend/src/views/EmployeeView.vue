@@ -7,11 +7,11 @@
     <!-- <h2 class="mb-4">Employees</h2> -->
 
     <!-- Add Button -->
-    <button class="btn mb-3 btnaddemp" @click="openAddModal">Add Employee</button>
+    <button class="btn btn-primary mb-3" @click="openAddModal">Add Employee</button>
 
     <!-- Employees Table -->
     <table class="table table-striped table-bordered">
-      <thead>
+      <thead class="table-dark">
         <tr>
           <th>#</th>
           <th>Name</th>
@@ -77,7 +77,7 @@
                 </div>
               </div>
               <div class="mt-3">
-                <button type="submit" class="btn mx-3 btn-success">{{ isEdit ? 'Update' : 'Add' }}</button>
+                <button type="submit" class="btn btn-success">{{ isEdit ? 'Update' : 'Add' }}</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
               </div>
             </form>
@@ -252,40 +252,11 @@ export default {
 th, td {
   text-align: left;
   padding: 10px 8px;
-  font-size: 1.08rem;
-  
+  font-size: 1rem;
 }
 
 thead {
   background-color: #3794f1;
   color: white;
 }
-
-th{
-  background-color: #2c3e50;
-  color : whitesmoke ;
-}
-
-.btnaddemp{
-  text-align: center;
-  border-radius: 5px;
-  border: #0c2c47 solid 3px;
-  box-shadow: #B497BD 3px 3px 2px;
-  background: #93d1cb;
-  transition: background 0.3s ease;
-  transition: box-shadow 0.2s ease;
-  transition: transform 0.3s ease;
-  font-size: 18px;
-
-  
-  
-}
-
-.btnaddemp:hover {
-    background: #B497BD;
-    box-shadow: none;
-    transform: scale(1.026);
-}
-
-
 </style>

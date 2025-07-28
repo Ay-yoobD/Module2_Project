@@ -68,11 +68,7 @@ export default {
 
 <style scoped>
 .card {
-  
-  border: #0c2c47 solid 3px;
-  padding: 35px;
-  border-radius: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
-
-
 </style>

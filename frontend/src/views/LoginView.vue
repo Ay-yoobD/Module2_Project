@@ -10,6 +10,7 @@
             type="text"
             id="username"
             class="form-control"
+            autocomplete="username"
             required
           />
         </div>
@@ -20,6 +21,7 @@
             type="password"
             id="password"
             class="form-control"
+            autocomplete="current-password"
             required
           />
         </div>
@@ -43,27 +45,28 @@ export default {
   methods: {
     async handleLogin() {
       try {
-        const response = await fetch("/login_credentials.json");
-        const users = await response.json();
+        const response = await fetch("http://localhost:3000/verify-password", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: this.username,
+            password: this.password
+          }),
+        });
 
-        console.log("Users loaded:", users);
-        console.log("Entered:", this.username, this.password);
+        const data = await response.json();
 
-        const validUser = users.find(user =>
-          user.username === this.username && user.password === this.password
-        );
-
-        if (validUser) {
-          console.log("Login successful!");
+        if (response.ok) {
+          localStorage.setItem('sessionId', data.sessionId);
+          localStorage.setItem('user', JSON.stringify(data.user));
           this.error = "";
           this.$router.push("/home");
         } else {
-          console.warn("Invalid credentials");
-          this.error = "Invalid username or password";
+          this.error = data.message || "Invalid username or password";
         }
       } catch (err) {
-        console.error("Login failed:", err);
         this.error = "Error logging in. Please try again.";
+        console.error("Login error:", err);
       }
     }
   }
@@ -73,7 +76,6 @@ export default {
 <style scoped>
 .login-container {
   background: linear-gradient(to right, #0c2c47, #7ea1af);
-  padding: none;
 }
 .card {
   border: none;
