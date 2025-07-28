@@ -16,7 +16,7 @@
     </select>
 
     <!-- Review Cards -->
-    <div v-if="filteredReviews.length ">
+    <div v-if="filteredReviews.length">
       <div v-for="review in filteredReviews" :key="review.id" class="card p-3 mb-3">
         <h5 class="mb-1">{{ getEmployeeName(review.EmployeeID) }}</h5>
         <small class="text-muted">Reviewed by: {{ review.Reviewer }} on {{ review.Date }}</small>
@@ -82,12 +82,16 @@ export default {
     this.$store.dispatch('getReviews').then(() => {
       this.ReviewInfo = this.$store.state.reviews;
       console.log(this.ReviewInfo)
+         
     });
+
 
     this.$store.dispatch('getUsers').then(() => {
       this.UsersInfo = this.$store.state.users;
+
     });
-   console.log(this.ReviewInfo)
+
+    console.log(this.ReviewInfo)
   },
 
   watch: {
