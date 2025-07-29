@@ -20,25 +20,25 @@ CREATE TABLE `moderntech_db`.`users` (
 -- ------Inserting Data ------
 
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (1, 'Sibongile Nkosi', 'Software Engineer', 'Development', 70000, 'Joined in 2015, promoted to Senior in 2018', 'sibongile.nkosi@moderntech.com', 'sibongile', NULL);
+VALUES (1, 'Sibongile Nkosi', 'Software Engineer', 'Development', 70000, 'Joined in 2015, promoted to Senior in 2018', 'sibongile.nkosi@moderntech.com', 'sibongile', '$2b$10$TK0mznJaHxiwRHMzKqS3De2AnrRnf1bJ3zTnP7InM2Fu1QaYAjfzi');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (2, 'Lungile Moyo', 'HR Manager', 'HR', 80000, 'Joined in 2013, promoted to Manager in 2017', 'lungile.moyo@moderntech.com', 'lungile', NULL);
+VALUES (2, 'Lungile Moyo', 'HR Manager', 'HR', 80000, 'Joined in 2013, promoted to Manager in 2017', 'lungile.moyo@moderntech.com', 'lungile', '$2b$10$0SJsGY.aL0mhIfMHmBk9luJhv.Lsjnsys/3gSVWc.FkTD6ZFt6y46');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (3, 'Thabo Molefe', 'Quality Analyst', 'QA', 55000, 'Joined in 2018', 'thabo.molefe@moderntech.com', 'thabo', NULL);
+VALUES (3, 'Thabo Molefe', 'Quality Analyst', 'QA', 55000, 'Joined in 2018', 'thabo.molefe@moderntech.com', 'thabo', '$2b$10$RF7V88gakhw4cdzJIzd0A.iQDP7I4Jd5v44XMsNR/ebYoURO667uG');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (4, 'Keshav Naidoo', 'Sales Representative', 'Sales', 60000, 'Joined in 2020', 'keshav.naidoo@moderntech.com', 'keshav', NULL);
+VALUES (4, 'Keshav Naidoo', 'Sales Representative', 'Sales', 60000, 'Joined in 2020', 'keshav.naidoo@moderntech.com', 'keshav', '$2b$10$.eHMCsadhI7q.IO1BoGseObz0fzf8MLeTXJ9Mhqq8GWbdssHMKzly');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (5, 'Zanele Khumalo', 'Marketing Specialist', 'Marketing', 58000, 'Joined in 2019', 'zanele.khumalo@moderntech.com', 'zanele', NULL);
+VALUES (5, 'Zanele Khumalo', 'Marketing Specialist', 'Marketing', 58000, 'Joined in 2019', 'zanele.khumalo@moderntech.com', 'zanele', '$2b$10$5GhjZe2Xa9L8d8LGltw7hu0OyiBF6RqAdJT8hHi0MRDCzQmF.pYCS');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (6, 'Sipho Zulu', 'UI/UX Designer', 'Design', 65000, 'Joined in 2016', 'sipho.zulu@moderntech.com', 'sipho', NULL);
+VALUES (6, 'Sipho Zulu', 'UI/UX Designer', 'Design', 65000, 'Joined in 2016', 'sipho.zulu@moderntech.com', 'sipho', '$2b$10$yrs9UtttjS2lhLMEHrLQxepaw7k3IssbuVp5IR3w8KWjnov4u/58m');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (7, 'Naledi Moeketsi', 'DevOps Engineer', 'IT', 72000, 'Joined in 2017', 'naledi.moeketsi@moderntech.com', 'naledi', NULL);
+VALUES (7, 'Naledi Moeketsi', 'DevOps Engineer', 'IT', 72000, 'Joined in 2017', 'naledi.moeketsi@moderntech.com', 'naledi', '$2b$10$i2JKyl/OvxFOULpzrSxwW.Y978Xcg2aFitoFWPPTMLFUh5wdjZtlC');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (8, 'Farai Gumbo', 'Content Strategist', 'Marketing', 56000, 'Joined in 2021', 'farai.gumbo@moderntech.com', 'farai', NULL);
+VALUES (8, 'Farai Gumbo', 'Content Strategist', 'Marketing', 56000, 'Joined in 2021', 'farai.gumbo@moderntech.com', 'farai', '$2b$10$7F26iHXMoB6OYHbnccVwZuDeQCm6B8dxikpa6GnEP3Har2m2lFfS2');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password)
-VALUES (9, 'Karabo Dlamini', 'Accountant', 'Finance', 62000, 'Joined in 2018', 'karabo.dlamini@moderntech.com', 'karabo', NULL);
+VALUES (9, 'Karabo Dlamini', 'Accountant', 'Finance', 62000, 'Joined in 2018', 'karabo.dlamini@moderntech.com', 'karabo', '$2b$10$7EPoK9zJclwe3vu53lw2.OBjwlRHe1Zv/5.J/o7ry2.GVGCWKPVYa');
 INSERT INTO users (EmployeeID, Name, Position, Department, Salary, EmploymentHistory, Contact, Username, Password) 
-VALUES (10, 'Fatima Patel', 'Customer Support Lead', 'Support', 58000, 'Joined in 2016', 'fatima.patel@moderntech.com', 'fatima', NULL);
+VALUES (10, 'Fatima Patel', 'Customer Support Lead', 'Support', 58000, 'Joined in 2016', 'fatima.patel@moderntech.com', 'fatima', '$2b$10$YWReLi8LpfW9ROJmbESKSugx1PNXSx.VygBw7peuxv6O/ekiFjnEC');
 
 -- --------------------------------------------------------------------------------------------------------------
 
