@@ -1,4 +1,4 @@
-<!-- because here's what i have but only the buttons arent linked to the db for some reason: -->
+because here's what i have but only the buttons arent linked to the db for some reason:
 
 <template>
   <header class="PayRollHead">
