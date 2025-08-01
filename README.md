@@ -26,6 +26,7 @@ PORT = 9090
 DATABASENAME = moderntech_db
 HOST = localhost
 PASSWORD = (localhost workbench password)
+USER = root
 
 # Login credentials(case-sensitive):
 (multiple provided if needed for testing):
