@@ -9,13 +9,16 @@ Ay-yoob Dawood
 index.js
 server.js
 
-# Modules/packages used:
+# Modules/packages used(backend):
 express
 nodemon
 mysql
 cors
 bcrypt
 dotenv
+
+# Modules/packages used(frontend):
+axios
 
 # .env details:
 password needs to be change to localhost password
