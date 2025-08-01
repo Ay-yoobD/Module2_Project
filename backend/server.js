@@ -10,10 +10,8 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Store logged-in users (temporary solution)
 const activeSessions = {};
 
-// Login endpoint - Updated version
 app.post('/verify-password', async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -23,11 +21,10 @@ app.post('/verify-password', async (req, res) => {
   try {
     const result = await verifyUserPassword(username, password);
     if (result.success) {
-      // Create a simple session
+      
       const sessionId = Math.random().toString(36).substring(2);
       activeSessions[sessionId] = username;
       
-      // Get full user details
       const [user] = await pool.query(
         'SELECT * FROM users WHERE Username = ?', 
         [username]
@@ -47,7 +44,6 @@ app.post('/verify-password', async (req, res) => {
   }
 });
 
-// Protected current-user endpoint
 app.get('/current-user', async (req, res) => {
   try {
     const sessionId = req.headers.authorization;
@@ -65,7 +61,6 @@ app.get('/current-user', async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Don't return password hash
     const { Password, ...userData } = user[0];
     res.json(userData);
     
