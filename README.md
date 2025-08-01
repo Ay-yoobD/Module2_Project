@@ -21,7 +21,11 @@ dotenv
 axios 
 
 # .env details:
-password needs to be change to localhost password
+.env need to be recreated with required information:
+PORT = 9090
+DATABASENAME = moderntech_db
+HOST = localhost
+PASSWORD = (localhost workbench password)
 
 # Login credentials(case-sensitive):
 (multiple provided if needed for testing):
