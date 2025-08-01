@@ -18,7 +18,7 @@ bcrypt
 dotenv
 
 # Modules/packages used(frontend):
-axios
+axios 
 
 # .env details:
 password needs to be change to localhost password
