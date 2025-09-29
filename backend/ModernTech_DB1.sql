@@ -234,3 +234,5 @@ INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VAL
 INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (9, 155, 5, 61500);
 INSERT INTO salaries (EmployeeID, HoursWorked, LeaveDeductions, FinalSalary) VALUES (10, 162, 4, 57750);
 
+ALTER TABLE `moderntech_db`.`leave_requests`
+ADD COLUMN leaveRequestID INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
