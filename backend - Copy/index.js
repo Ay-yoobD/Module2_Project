@@ -126,8 +126,6 @@ app.get('/users/UIF/:ID', UIFCon )
 app.get('/users/HealthInsure/:ID', HealthInsureCon )     
 app.get('/users/TakeHome/:ID', TakeHomeCon )     
 
-// app.listen(PORT,()=>{   
-//     console.log(`http://localhost:${PORT}`)
-// })
-
-export default app;
+app.listen(PORT,()=>{   
+    console.log(`http://localhost:${PORT}`)
+})
