@@ -117,7 +117,7 @@ export default {
   methods: {
     async fetchEmployees() {
       try {
-        const response = await axios.get('http://localhost:9090/users');
+        const response = await axios.get('https://module2-project-hmma.onrender.com9090/users');
         this.employees = response.data.map(user => ({
           id: user.EmployeeID,
           name: user.Name,
@@ -183,10 +183,10 @@ export default {
         }
 
         if (this.isEdit) {
-          await axios.put(`http://localhost:9090/users/${this.currentId}`, payload);
+          await axios.put(`https://module2-project-hmma.onrender.com9090/users/${this.currentId}`, payload);
 
         } else {
-          await axios.post('http://localhost:9090/users', payload);
+          await axios.post('https://module2-project-hmma.onrender.com9090/users', payload);
 
         }
 
@@ -202,7 +202,7 @@ export default {
     async deleteEmployee(id) {
       if (confirm("Are you sure you want to delete this employee?")) {
         try {
-          await axios.delete(`http://localhost:9090/users/${id}`);
+          await axios.delete(`https://module2-project-hmma.onrender.com9090/users/${id}`);
           this.fetchEmployees();
         } catch (error) {
           alert("Failed to delete employee");

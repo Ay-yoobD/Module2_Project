@@ -102,7 +102,7 @@ export default {
   methods: {
     async fetchCurrentUser() {
       try {
-        const response = await fetch('http://localhost:3000/current-user');
+        const response = await fetch('https://module2-project-hmma.onrender.com3000/current-user');
         this.currentUser = await response.json();
       } catch (error) {
         console.error("Error fetching user:", error);
@@ -110,7 +110,7 @@ export default {
     },
     async fetchEmployeeNames() {
       try {
-        const response = await fetch('http://localhost:3000/leave-requests/employee-names');
+        const response = await fetch('https://module2-project-hmma.onrender.com3000/leave-requests/employee-names');
         this.employeeNames = await response.json();
       } catch (error) {
         console.error("Failed to load employee names:", error);
@@ -118,7 +118,7 @@ export default {
     },
     async fetchLeaveRequests() {
       try {
-        const response = await fetch('http://localhost:3000/leave-requests');
+        const response = await fetch('https://module2-project-hmma.onrender.com3000/leave-requests');
         this.leaveRequests = await response.json();
       } catch (error) {
         console.error("Failed to load leave requests:", error);
@@ -128,7 +128,7 @@ export default {
       try {
         const fullReason = `${this.form.type}: ${this.form.reason}`;
 
-        const response = await fetch('http://localhost:3000/leave-requests', {
+        const response = await fetch('https://module2-project-hmma.onrender.com3000/leave-requests', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -153,7 +153,7 @@ export default {
     async updateRequest(leaveRequestID, status) {
       try {
         await
-          fetch(`http://localhost:3000/leave-requests/${leaveRequestID}`, {
+          fetch(`https://module2-project-hmma.onrender.com3000/leave-requests/${leaveRequestID}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status })

@@ -45,7 +45,7 @@ export default {
   methods: {
     async handleLogin() {
       try {
-        const response = await fetch("http://localhost:3000/verify-password", {
+        const response = await fetch("https://module2-project-hmma.onrender.com3000/verify-password", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
