@@ -23,7 +23,7 @@ axios
 # .env details:
 .env need to be recreated with required information:
 PORT = 9090
-DATABASENAME = moderntech_db
+DATABASE = moderntech_db
 HOST = localhost
 PASSWORD = (localhost workbench password)
 USER = root

@@ -95,11 +95,13 @@ app.get('/', (req, res) => {
   res.send('Welcome to the MySQL API! Try /health or /leave-requests');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
 
-process.on('SIGTERM', () => {
-  pool.end();
-  process.exit(0);
-});
+// process.on('SIGTERM', () => {
+//   pool.end();
+//   process.exit(0);
+// });
+
+export default app;
