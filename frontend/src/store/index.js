@@ -69,7 +69,7 @@ export default createStore({
   actions: {
     async getUsers({ commit }) {
       try {
-        let data = await axios.get('https://module2-project-hmma.onrender.com9090/users/load')
+        let data = await axios.get('https://module2-project-hmma.onrender.com/users/load')
         console.log(data.data.users)
         
         commit('setUsers', data.data.users)
@@ -84,7 +84,7 @@ export default createStore({
 
     async getSalaries({ commit }) {
       try {
-        let data = await axios.get('https://module2-project-hmma.onrender.com9090/salaries')
+        let data = await axios.get('https://module2-project-hmma.onrender.com/salaries')
         console.log(data.data.salaries)
 
         commit('setSalaries', data.data.salaries)
@@ -99,7 +99,7 @@ export default createStore({
 
     async getReviews({ commit }) {
       try {
-        let data = await axios.get('https://module2-project-hmma.onrender.com9090/reviews')
+        let data = await axios.get('https://module2-project-hmma.onrender.com/reviews')
         console.log(data.data)
 
         commit('setReviews', data.data.reviews)
@@ -114,7 +114,7 @@ export default createStore({
 
     async fetchDeduction({ commit }, EmpID) {
       try {
-        let res = await axios.get(`https://module2-project-hmma.onrender.com9090/users/deduct/${EmpID}`)
+        let res = await axios.get(`https://module2-project-hmma.onrender.com/users/deduct/${EmpID}`)
         console.log(`deduct store action${res.data.deduction}`)
 
         commit('setDeduct', res.data.deduction)
@@ -129,7 +129,7 @@ export default createStore({
 
     async fetchRateHr({ commit }, EmpId) {
       try {
-        let res = await axios.get(`https://module2-project-hmma.onrender.com9090/users/hrrate/${EmpId}`)
+        let res = await axios.get(`https://module2-project-hmma.onrender.com/users/hrrate/${EmpId}`)
         console.log(`Rate store action:${res.data.rateHr}`)
 
         commit('setRateHr', res.data.rateHr)
@@ -144,7 +144,7 @@ export default createStore({
 
     async fetchPAYE({ commit }, EmpID) {
       try {
-        let res = await axios.get(`https://module2-project-hmma.onrender.com9090/users/PAYE/${EmpID}`)
+        let res = await axios.get(`https://module2-project-hmma.onrender.com/users/PAYE/${EmpID}`)
         console.log(`PAYE store action:${res.data.PAYE}`)
 
         commit('setPAYE', res.data.PAYE)
@@ -159,7 +159,7 @@ export default createStore({
 
     async fetchUIF({ commit }, EmpID) {
       try {
-        let res = await axios.get(`https://module2-project-hmma.onrender.com9090/users/UIF/${EmpID}`)
+        let res = await axios.get(`https://module2-project-hmma.onrender.com/users/UIF/${EmpID}`)
         console.log(`UIF store action:${res.data.UIF}`)
 
         commit('setUIF', res.data.UIF)
@@ -174,7 +174,7 @@ export default createStore({
 
     async fetchHealthInsure({ commit }, EmpID) {
       try {
-        let res = await axios.get(`https://module2-project-hmma.onrender.com9090/users/HealthInsure/${EmpID}`)
+        let res = await axios.get(`https://module2-project-hmma.onrender.com/users/HealthInsure/${EmpID}`)
         console.log(`HealthInsure store action:${res.data.HealthInsure}`)
 
         commit('setHealthInsure', res.data.HealthInsure)
@@ -189,7 +189,7 @@ export default createStore({
 
     async fetchTakeHome({ commit }, EmpID) {
       try {
-        let res = await axios.get(`https://module2-project-hmma.onrender.com9090/users/TakeHome/${EmpID}`)
+        let res = await axios.get(`https://module2-project-hmma.onrender.com/users/TakeHome/${EmpID}`)
         console.log(`TakeHome store action:${res.data.TakeHome}`)
 
         commit('setTakeHome', res.data.TakeHome)
